@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licencia Digital</title>
+    <style>
+        :root {
+            /* Paleta de colores */
+            --primary-blue: #0066CC;
+            --active-tab-blue: #003380;
+            --card-background: #E8EDF2;
+            --main-background: #FFFFFF;
+            --text-color: #000000;
+            --white-text: #FFFFFF;
+            /* Altura estimada del menú inferior */
+            --body-padding-bottom: 85px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--card-background); /* Fondo ligeramente gris para esta vista */
+            color: var(--text-color);
+            padding-bottom: var(--body-padding-bottom);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Estilo del Encabezado */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white-text);
+            text-align: center;
+            padding: 25px 0;
+            border-radius: 0 0 25px 25px;
+            font-size: 1.6rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Contenido Principal */
+        main {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Contenedor de la Imagen de la Licencia */
+        .license-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: transparent;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .license-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            /* Transición suave al cambiar la imagen */
+            transition: opacity 0.3s ease;
+        }
+
+        /* Botón de Voltear */
+        .flip-button {
+            background: none;
+            border: none;
+            color: var(--primary-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .flip-button svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--primary-blue);
+        }
+
+        /* Menú Inferior Fijo */
+        footer {
+            background-color: var(--primary-blue);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 20px 20px 0 0;
+            z-index: 1000;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Enlaces del Menú Inferior */
+        .footer-link {
+            text-decoration: none;
+            text-align: center;
+            color: var(--white-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.65rem;
+            flex: 1;
+            height: 100%;
+            transition: background-color 0.2s;
+        }
+
+        /* Enlace activo */
+        .footer-link.active-bg {
+            background-color: var(--active-tab-blue);
+        }
+
+        /* Iconos SVG del menú */
+        .footer-link svg {
+            width: 26px;
+            height: 26px;
+            fill: var(--white-text);
+        }
+
+        /* Marca de verificación en el primer icono (Mis datos) */
+        .checkmark-icon {
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            background-color: var(--white-text);
+            border-radius: 50%;
+            padding: 2px;
+            display: flex;
+        }
+
+        .checkmark-icon svg {
+            width: 11px;
+            height: 11px;
+            fill: var(--primary-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <header>Licencia digital</header>
+
+    <main>
+        <!-- Contenedor de la Licencia -->
+        <div class="license-container">
+            <!-- REEMPLAZA 'licencia-frente.jpg' CON EL NOMBRE DE TU IMAGEN FRONTAL -->
+            <img src="licencia-frente.jpg" alt="Licencia Digital" id="licencia-img" class="license-image">
+        </div>
+
+        <!-- Botón para voltear -->
+        <button class="flip-button" id="btn-voltear">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2.75a9.25 9.25 0 1 0 4.737 17.197l-1.383-2.395A6.5 6.5 0 1 1 12 5.5v3.172l4.828-4.828L12-.984V2.75z" stroke="var(--primary-blue)" stroke-width="1" fill="var(--primary-blue)"/>
+            </svg>
+            Voltear licencia
+        </button>
+    </main>
+
+    <!-- Menú Inferior Fijo -->
+    <footer>
+        <a href="mis-datos.html" class="footer-link">
+            <div style="position: relative;">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                <div class="checkmark-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+            </div>
+            Mis datos
+        </a>
+        
+        <a href="tramites-en-proceso.html" class="footer-link">
+            <div style="position: relative;">
+                <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            </div>
+            Trámites en proceso
+        </a>
+        
+        <!-- PESTAÑA ACTIVA CON FONDO OSCURO EN LICENCIA DIGITAL -->
+        <a href="licencia-digital.html" class="footer-link active-bg">
+            <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zm-10-7h8v2h-8zm0-4h8v2h-8zM7 15c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"/></svg>
+            Licencia Digital
+        </a>
+        
+        <a href="mesa-de-ayuda.html" class="footer-link">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V19h-2v-2.07a8 8 0 1 1 2 0zM12 5a1 1 0 1 0 1 1 1 1 0 0 0-1-1zm3 4.28a3 3 0 1 0-6 0c0 1.34 1.16 2.45 2.5 3l.5.25v2h2v-2l-.5-.25c-1.34-.55-2.5-1.66-2.5-3a1 1 0 1 1 2 0"/></svg>
+            Mesa de ayuda
+        </a>
+        
+        <a href="salir.html" class="footer-link">
+            <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2z"/></svg>
+            Salir
+        </a>
+    </footer>
+
+    <!-- SCRIPT PARA VOLTEAR LA IMAGEN -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imgElement = document.getElementById('licencia-img');
+            const btnVoltear = document.getElementById('btn-voltear');
+            
+            // Estado para saber qué lado se está mostrando
+            let mostrandoFrente = true;
+
+            // Nombres de las imágenes (DEBES ASEGURARTE QUE SE LLAMEN ASÍ EN TU CARPETA)
+            const imgFrente = 'licencia-frente.jpg';
+            const imgDorso = 'licencia-dorso.jpg';
+
+            btnVoltear.addEventListener('click', function() {
+                // Efecto de desvanecimiento sutil
+                imgElement.style.opacity = 0;
+                
+                setTimeout(() => {
+                    if (mostrandoFrente) {
+                        imgElement.src = imgDorso;
+                        mostrandoFrente = false;
+                    } else {
+                        imgElement.src = imgFrente;
+                        mostrandoFrente = true;
+                    }
+                    imgElement.style.opacity = 1;
+                }, 200); // 200ms coincide con la transición CSS
+            });
+        });
+    </script>
+
+</body>
+</html>
