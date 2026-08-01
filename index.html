@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="faviicon.png">
+
+    <title>Ministerio de Transportes y Telecomunicaciones</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            background: #000321;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* LOGO / PANEL SUPERIOR */
+        .panel {
+            width: 462px;
+            height: 419px;
+            margin-top: 281px;
+
+            display: flex;
+            overflow: hidden;
+        }
+
+        .lado-azul {
+            width: 41%;
+            height: 100%;
+            background: #1976b9;
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .escudo {
+            width: 150px;
+            margin-top: 21px;
+            filter: brightness(0) invert(1);
+        }
+
+        .lado-rojo {
+            width: 59%;
+            height: 100%;
+            background: #f23748;
+
+            position: relative;
+            padding: 16px 20px;
+        }
+
+        .ministerio {
+            font-size: 27px;
+            line-height: 1.2;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .gobierno {
+            position: absolute;
+            left: 20px;
+            bottom: 14px;
+
+            font-size: 27px;
+            line-height: 1;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* BOTÓN */
+        .boton {
+            width: 294px;
+            height: 92px;
+
+            margin-top: 178px;
+
+            background: #1477c9;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-decoration: none;
+
+            font-size: 29px;
+            font-weight: bold;
+
+            transition: background 0.2s ease;
+        }
+
+        .boton:hover {
+            background: #0d65ad;
+        }
+
+        .icono {
+            width: 43px;
+            height: 43px;
+            margin-right: 12px;
+
+            border: 3px solid white;
+            border-radius: 50%;
+
+            position: relative;
+        }
+
+        .icono::before {
+            content: "";
+            position: absolute;
+
+            width: 17px;
+            height: 17px;
+
+            border: 3px solid white;
+            border-radius: 50%;
+
+            left: 10px;
+            top: 10px;
+        }
+
+        .icono::after {
+            content: "";
+            position: absolute;
+
+            width: 3px;
+            height: 10px;
+
+            background: white;
+
+            left: 19px;
+            top: -8px;
+        }
+
+        /* TEXTO INFERIOR */
+        .advertencia {
+            width: 650px;
+
+            margin-top: 251px;
+            margin-bottom: 40px;
+
+            text-align: center;
+
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            font-size: 28px;
+            line-height: 1.28;
+            font-weight: 400;
+
+            letter-spacing: 0.2px;
+        }
+
+        /* ADAPTACIÓN PARA CELULARES */
+        @media (max-width: 600px) {
+
+            .panel {
+                width: 65vw;
+                height: 59vw;
+                margin-top: 25vh;
+            }
+
+            .escudo {
+                width: 32%;
+                margin-top: 5%;
+            }
+
+            .lado-rojo {
+                padding: 4% 5%;
+            }
+
+            .ministerio {
+                font-size: 4vw;
+            }
+
+            .gobierno {
+                left: 5%;
+                bottom: 4%;
+                font-size: 4vw;
+            }
+
+            .boton {
+                width: 42vw;
+                height: 13vw;
+                margin-top: 16vh;
+                font-size: 4vw;
+            }
+
+            .icono {
+                width: 6vw;
+                height: 6vw;
+                margin-right: 2vw;
+            }
+
+            .icono::before {
+                width: 2.3vw;
+                height: 2.3vw;
+                left: 1.1vw;
+                top: 1.1vw;
+            }
+
+            .icono::after {
+                left: 2.6vw;
+                top: -1.5vw;
+                width: 0.4vw;
+                height: 1.5vw;
+            }
+
+            .advertencia {
+                width: 90vw;
+                margin-top: 22vh;
+                font-size: 4vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="panel">
+
+<img src="logo.png">
+
+    </div>
+
+
+    <!-- BOTÓN FUNCIONAL -->
+    <a class="boton" href="pagina2.html">
+
+        <span class="icono"></span>
+
+        <span>Iniciar sesión</span>
+
+    </a>
+
+
+    <div class="advertencia">
+        Ojo con los medicamentos que tomas:<br>
+        consulta con tu médico si pueden<br>
+        afectarte al conducir.
+    </div>
+
+</body>
+</html>

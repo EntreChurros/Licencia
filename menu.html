@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Datos - Réplica Exacta</title>
+    <style>
+        :root {
+            /* Paleta de colores */
+            --primary-blue: #0059B2;
+            --primary-blue-light: #BFD9F2;
+            --card-background: #E6EAEE;
+            --main-background: #FFFFFF;
+            --label-color: #6D7278;
+            --data-color: #000000;
+            --white-text: #FFFFFF;
+            /* Altura estimada del menú inferior */
+            --body-padding-bottom: 90px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--main-background);
+            color: var(--data-color);
+            /* Espacio para el menú fijo en la parte inferior */
+            padding-bottom: var(--body-padding-bottom);
+        }
+
+        /* Estilo del Encabezado */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white-text);
+            text-align: center;
+            padding: 20px 0;
+            border-radius: 0 0 20px 20px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Contenido Principal (desplazable) */
+        main {
+            padding: 20px;
+        }
+
+        /* Tarjetas de Datos */
+        .data-card {
+            background-color: var(--card-background);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Contenedor de la Foto */
+        .photo-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .id-photo {
+            width: 150px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Superpuesto del RUN en la foto */
+        .photo-run-overlay {
+            position: absolute;
+            bottom: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--white-text);
+            padding: 2px 5px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            border-radius: 3px;
+        }
+
+        /* Filas de Datos */
+        .data-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .data-label {
+            color: var(--label-color);
+            font-size: 0.9rem;
+            width: 120px;
+        }
+
+        .data-value {
+            color: var(--data-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        /* Sección de Restricciones */
+        .restrictions-card {
+            background-color: var(--primary-blue-light);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .restrictions-label {
+            color: var(--label-color);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .restrictions-value {
+            color: var(--data-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        /* Encabezado de Licencia (Iconos) */
+        .license-header {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+            margin-bottom: 15px;
+        }
+
+        .license-type-box {
+            background-color: var(--card-background);
+            color: var(--data-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 2px solid var(--data-color);
+        }
+
+        .bus-icon {
+            width: 30px;
+            height: 30px;
+            fill: var(--data-color);
+        }
+
+        /* Menú Inferior Fijo */
+        footer {
+            background-color: var(--primary-blue);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-radius: 20px 20px 0 0;
+            z-index: 1000;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Enlaces del Menú Inferior */
+        .footer-link {
+            text-decoration: none;
+            text-align: center;
+            color: var(--white-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.7rem;
+            flex: 1;
+        }
+
+        /* Enlace activo (el actual) */
+        .footer-link.active {
+            font-weight: bold;
+        }
+
+        /* Iconos SVG del menú */
+        .footer-link svg {
+            width: 25px;
+            height: 25px;
+            fill: var(--white-text);
+        }
+
+        /* Marca de verificación en el primer icono */
+        .checkmark-icon {
+            position: absolute;
+            bottom: -3px;
+            right: -3px;
+            background-color: var(--white-text);
+            border-radius: 50%;
+            padding: 1px;
+            display: flex;
+        }
+
+        .checkmark-icon svg {
+            width: 10px;
+            height: 10px;
+            fill: var(--primary-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <header>Mis datos</header>
+
+    <main>
+        <!-- Tarjeta de Datos Personales -->
+        <div class="data-card">
+            <div class="photo-container">
+                <!-- REEMPLAZA ESTE PATH CON LA IMAGEN REAL -->
+                <img src="gitano.png" alt="Foto de identificación" class="id-photo">
+                
+            </div>
+
+            <div class="data-row">
+                <div class="data-label">Apellidos</div>
+                <div class="data-value">ESPINOZA CACERES</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Nombres</div>
+                <div class="data-value">CLAUDIO HERNAN </div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">RUN</div>
+                <div class="data-value">15.774.191 - 8</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Nacimiento</div>
+                <div class="data-value">28/06/1985</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Municipalidad</div>
+                <div class="data-value">TALCA</div>
+            </div>
+
+            <div class="restrictions-card">
+                <div class="restrictions-label">Restricciones</div>
+                <div class="restrictions-value">SIN OBSERVACIONES</div>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Licencia a2 -->
+        <div class="data-card">
+            <div class="license-header">
+                <div class="license-type-box">A2</div>
+              
+            </div>
+
+            <div class="data-row">
+                <div class="data-label">Nº Folio</div>
+                <div class="data-value">27584356</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Primer Otorgamiento</div>
+                <div class="data-value">05/11/2014</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Otorgamiento actual</div>
+                <div class="data-value">20/05/2026</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Vencimiento</div>
+                <div class="data-value">29/09/2030</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Municipalidad</div>
+                <div class="data-value">TALCA</div>
+            </div>
+        </div>
+                <!-- Tarjeta de Licencia b -->
+               <div class="data-card">
+            <div class="license-header">
+                <div class="license-type-box">B</div>
+              
+            </div>
+
+            <div class="data-row">
+                <div class="data-label">Nº Folio</div>
+                <div class="data-value">27584356</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Primer Otorgamiento</div>
+                <div class="data-value">05/11/2014</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Otorgamiento actual</div>
+                <div class="data-value">20/05/2026</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Vencimiento</div>
+                <div class="data-value">29/09/2030</div>
+            </div>
+            <div class="data-row">
+                <div class="data-label">Municipalidad</div>
+                <div class="data-value">TALCA</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Menú Inferior Fijo -->
+    <footer>
+        <a href="mis-datos.html" class="footer-link active">
+            <div style="position: relative;">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                <div class="checkmark-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+            </div>
+            Mis datos
+        </a>
+        <a href="tramites-en-proceso.html" class="footer-link">
+            <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            Trámites en proceso
+        </a>
+        <a href="licencia-digital.html" class="footer-link">
+            <svg viewBox="0 0 24 24"><path d="M10.2 13.4H13.8V16.6H10.2V13.4M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2.8-6.6c0-2 2-2 2-2s2 0 2 2m0 2.2V17h2v-.2"/></svg>
+            Licencia Digital
+        </a>
+        <a href="mesa-de-ayuda.html" class="footer-link">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V19h-2v-2.07a8 8 0 1 1 2 0zM12 5a1 1 0 1 0 1 1 1 1 0 0 0-1-1zm3 4.28a3 3 0 1 0-6 0c0 1.34 1.16 2.45 2.5 3l.5.25v2h2v-2l-.5-.25c-1.34-.55-2.5-1.66-2.5-3a1 1 0 1 1 2 0"/></svg>
+            Mesa de ayuda
+        </a>
+        <a href="salir.html" class="footer-link">
+            <svg viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2z"/></svg>
+            Salir
+        </a>
+    </footer>
+
+</body>
+</html>

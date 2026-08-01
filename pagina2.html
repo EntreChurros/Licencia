@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Licencia de Conducir Digital</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #ffffff;
+        color: #555555;
+    }
+
+    /* Barra superior */
+    .barra-superior {
+        width: 100%;
+        height: 14px;
+        display: flex;
+        margin-bottom: 28px;
+    }
+
+    .barra-azul {
+        width: 19%;
+        background: #1767a8;
+    }
+
+    .barra-roja {
+        width: 26%;
+        background: #e6323c;
+    }
+
+    .barra-blanca {
+        flex: 1;
+        background: white;
+    }
+
+    /* Encabezado */
+    .encabezado {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 27px;
+    }
+
+    .clave-unica {
+        display: flex;
+        align-items: center;
+        color: #3568a0;
+        font-size: 43px;
+        font-weight: 400;
+        letter-spacing: -2px;
+    }
+
+    .logo {
+        width: 48px;
+        height: 48px;
+        border: 4px solid #3568a0;
+        border-radius: 50%;
+        margin-right: 10px;
+        position: relative;
+    }
+
+    .logo:before {
+        content: "";
+        position: absolute;
+        width: 17px;
+        height: 17px;
+        border: 4px solid #3568a0;
+        border-radius: 50%;
+        top: 10px;
+        left: 10px;
+    }
+
+    .logo:after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 11px;
+        background: #3568a0;
+        top: -10px;
+        left: 18px;
+    }
+
+    .controles {
+        display: flex;
+        gap: 26px;
+        align-items: center;
+    }
+
+    .control {
+        width: 66px;
+        height: 66px;
+        border: 2px solid #555;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        color: #444;
+    }
+
+    .control-mitad {
+        width: 31px;
+        height: 31px;
+        border-radius: 50%;
+        background: linear-gradient(
+            to right,
+            #333 0%,
+            #333 50%,
+            white 50%,
+            white 100%
+        );
+        border: 2px solid #333;
+    }
+
+    .titulo {
+        text-align: center;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 51px;
+        line-height: 1.2;
+        color: #555555;
+        font-weight: bold;
+        margin: 70px 20px 70px;
+    }
+
+    /* Formulario */
+    .formulario {
+        width: calc(100% - 56px);
+        margin: 0 auto;
+    }
+
+    .campo {
+        width: 100%;
+        height: 83px;
+        border: 1.5px solid #555;
+        display: flex;
+        align-items: center;
+        margin-bottom: 69px;
+        background: white;
+    }
+
+    .campo input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        padding: 0 14px;
+        font-size: 34px;
+        color: #555;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .campo input::placeholder {
+        color: #70757a;
+        opacity: 1;
+    }
+
+    .campo-clave {
+        margin-bottom: 72px;
+    }
+
+    .campo-clave input {
+        width: calc(100% - 82px);
+    }
+
+    .ojo {
+        width: 82px;
+        height: 83px;
+        border: none;
+        background: #78ace0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    /* Ojo */
+    .ojo-icono {
+        width: 36px;
+        height: 24px;
+        background: white;
+        border-radius: 80% 20%;
+        transform: rotate(45deg);
+        position: relative;
+    }
+
+    .ojo-icono:after {
+        content: "";
+        position: absolute;
+        width: 11px;
+        height: 11px;
+        background: #78ace0;
+        border-radius: 50%;
+        top: 6px;
+        left: 10px;
+    }
+
+    /* Enlaces */
+    .enlaces {
+        margin-bottom: 70px;
+    }
+
+    .enlace {
+        display: block;
+        color: #27689d;
+        font-size: 28px;
+        text-decoration: underline;
+        margin-bottom: 38px;
+        cursor: pointer;
+    }
+
+    /* Botón */
+    .boton-ingresa {
+        width: 100%;
+        height: 99px;
+        border: none;
+        background: #78ace0;
+        color: white;
+        font-size: 33px;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-bottom: 46px;
+    }
+
+    .boton-ingresa:hover {
+        background: #659dd5;
+    }
+
+    .boton-ingresa:active {
+        background: #558fc9;
+    }
+
+    /* Ayuda */
+    .ayuda {
+        text-align: center;
+        font-size: 27px;
+        color: #555;
+        text-decoration: underline;
+        margin-top: 0;
+        cursor: pointer;
+    }
+
+    /* Adaptación para pantallas pequeñas */
+    @media (max-width: 600px) {
+
+        .clave-unica {
+            font-size: 30px;
+        }
+
+        .logo {
+            width: 38px;
+            height: 38px;
+        }
+
+        .controles {
+            gap: 8px;
+        }
+
+        .control {
+            width: 48px;
+            height: 48px;
+            font-size: 17px;
+        }
+
+        .titulo {
+            font-size: 37px;
+            margin-top: 55px;
+            margin-bottom: 55px;
+        }
+
+        .campo {
+            height: 70px;
+            margin-bottom: 50px;
+        }
+
+        .campo input {
+            font-size: 25px;
+        }
+
+        .ojo {
+            height: 70px;
+            width: 70px;
+        }
+
+        .campo-clave input {
+            width: calc(100% - 70px);
+        }
+
+        .enlace {
+            font-size: 23px;
+        }
+
+        .boton-ingresa {
+            height: 82px;
+            font-size: 28px;
+        }
+
+        .ayuda {
+            font-size: 23px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- Barra superior -->
+    <div class="barra-superior">
+        <div class="barra-azul"></div>
+        <div class="barra-roja"></div>
+        <div class="barra-blanca"></div>
+    </div>
+
+    <!-- Encabezado -->
+    <div class="encabezado">
+
+        <div class="clave-unica">
+            <div class="logo"></div>
+            <span>ClaveÚnica</span>
+        </div>
+
+        <div class="controles">
+            <div class="control">
+                <div class="control-mitad"></div>
+            </div>
+
+            <div class="control">
+                A-
+            </div>
+
+            <div class="control">
+                <strong>A+</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Título -->
+    <h1 class="titulo">
+        Licencia de Conducir<br>
+        Digital
+    </h1>
+
+    <!-- Formulario -->
+    <div class="formulario">
+
+        <!-- RUT -->
+        <div class="campo">
+            <input
+                type="text"
+                id="rut"
+                placeholder="Ingresa tu RUN"
+                autocomplete="off"
+            >
+        </div>
+
+        <!-- Clave -->
+        <div class="campo campo-clave">
+
+            <input
+                type="password"
+                id="clave"
+                placeholder="Ingresa tu ClaveÚnica"
+                autocomplete="off"
+            >
+
+            <button
+                class="ojo"
+                type="button"
+                onclick="mostrarClave()"
+                aria-label="Mostrar u ocultar clave"
+            >
+                <span class="ojo-icono"></span>
+            </button>
+
+        </div>
+
+        <!-- Enlaces -->
+        <div class="enlaces">
+            <a class="enlace">Recupera tu ClaveÚnica</a>
+            <a class="enlace">Solicita tu ClaveÚnica</a>
+        </div>
+
+        <!-- Botón INGRESA -->
+        <button
+            class="boton-ingresa"
+            type="button"
+            onclick="ingresar()"
+        >
+            INGRESA
+        </button>
+
+        <!-- Ayuda -->
+        <div class="ayuda">
+            ¿Necesitas ayuda?
+        </div>
+
+    </div>
+
+
+<script>
+
+    // Mostrar / ocultar contraseña
+    function mostrarClave() {
+
+        const campo = document.getElementById("clave");
+
+        if (campo.type === "password") {
+            campo.type = "text";
+        } else {
+            campo.type = "password";
+        }
+    }
+
+
+    // Botón INGRESA
+    function ingresar() {
+
+        // Redirige a página3.html
+        window.location.href = "pagina3.html";
+    }
+
+</script>
+
+</body>
+</html>
